@@ -1,22 +1,12 @@
-from flask import Flask, request
+from flask import Flask, request, redirect, render_template
 from caesar import rotate_string
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
-form = """
-    <form method='POST'>
-        <label>Rotate by:
-            <input name="rot" type="text" value='0' />
-		</label>
-        <input type="textarea" name="text" value=''/>
-		<input type="submit" value="Submit Query" />
-    </form>
-"""
-
 @app.route("/")
 def index():
-    return form
+    return render_template('encrypt_form.html')
 	
 @app.route("/", methods=['POST'])
 def encrypt():
